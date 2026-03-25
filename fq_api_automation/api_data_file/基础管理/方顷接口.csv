@@ -1,0 +1,13 @@
+模块名,接口描述,Scheme,接口地址,接口参数,请求方式,请求头,响应结果（非必填）,校验字段,校验方式,预期结果
+基础管理,合同管理-新增,http,/ilogbasic/rest/v1/contract,"{""contractNo"":"""",""projectId"":""${prjectid}"",""nickName"":""杨帆自动化测试"",""attributeType"":""SALE"",""departmentId"":""${departid}"",""userId"":"""",""signingAmount"":""1000"",""signingDate"":""${date_time}"",""settleRemindDate"":"""",""signingUnit"":""${signingunit}"",""supplementaryContracts"":[],""settlementRecords"":[],""appendixUrls"":[],""payableAmount"":0,""typeId"":""${typeid}""}",POST,{'content-type': 'application/json'},,msg,等于,success
+基础管理,合同管理-获取项目信息,http,/sysmgt/rest/v1/dict/dictionary/list/contract-project-name,,GET,{'content-type': 'application/json'},,msg,等于,success
+基础管理,合同管理-主体信息,http,/sysmgt/rest/v1/depart/tree,,GET,{'content-type': 'application/json'},,msg,等于,success
+基础管理,合同管理-合同分类信息,http,/sysmgt/rest/v1/dict/dictionary/list/contract-type,,GET,{'content-type': 'application/json'},,msg,等于,success
+基础管理,合同管理-签订单位信息,http,/sysmgt/rest/v1/dict/dictionary/list/contract-signing-company,,GET,{'content-type': 'application/json'},,msg,等于,success
+基础管理,合同管理-编辑,http,/ilogbasic/rest/v1/contract/${id},"{""projectId"":""${projectid}"",""auditAmount"":"""",""auditType"":"""",""settleRemindDate"":null,""settlementRecords"":[{""receiptVoucherUrls"":[],""invoiced"":false,""settlementAmount"":""100"",""settlementDate"":""${date_time}""}],""supplementaryContracts"":[]}",PUT,{'content-type': 'application/json'},,msg,等于,success
+基础管理,合同管理-合同列表,http,/ilogbasic/rest/v1/contract/page,"{""filterKey"":""${filterKey}"",""departmentId"":"""",""startTime"":"""",""endTime"":"""",""remindDateStart"":"""",""remindDateEnd"":"""",""pageNumber"":0,""pageSize"":20}",POST,{'content-type': 'application/json'},,msg,等于,success
+基础管理,合同管理-合同详情,http,/ilogbasic/rest/v1/contract/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+基础管理,合同管理-删除,http,/ilogbasic/rest/v1/contract/${id},,DELETE,{'content-type': 'application/json'},,msg,等于,success
+基础管理,合同统计-销售统计,http,/ilogbasic/rest/v1/contract/stats/sales/SALE?attrType=SALE,,GET,{'content-type': 'application/json'},,msg,等于,success
+基础管理,合同统计-采购统计,http,/ilogbasic/rest/v1/contract/stats/sales/PURCHASE?attrType=PURCHASE,,GET,{'content-type': 'application/json'},,msg,等于,success
+基础管理,合同统计-本月概要,http,/ilogbasic/rest/v1/contract/stats/currentMonth,,GET,{'content-type': 'application/json'},,msg,等于,success

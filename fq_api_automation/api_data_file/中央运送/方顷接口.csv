@@ -1,0 +1,133 @@
+模块名,接口描述,Scheme,接口地址,接口参数,请求方式,请求头,响应结果（非必填）,校验字段,校验方式,预期结果
+中央运送,运送列表-新增运送单,http,/ilogmaintenance/rest/v1/transport/createOrder,"{
+    ""applyUser"": {
+        ""id"": ""${userid1}"",
+        ""nickName"": ""${username1}"",
+        ""phone"": ""${userphone1}""
+    },
+    ""applyUserID"": ""${userid1}"",
+    ""applyDepart"": ${depart1},
+    ""recipientUser"": {
+        ""id"": ""${userid2}"",
+        ""nickName"": ""${username2}"",
+        ""phone"": ""${userphone2}""
+    },
+    ""recipientUserID"": ""${userid2}"",
+    ""recipientDepart"": ${depart2},
+    ""shippingObjectId"": ""${objectid}"",
+    ""shippingObjectName"": ""${objectname}"",
+    ""shippingMethodId"": ""${methodid}"",
+    ""shippingMethodName"": """",
+    ""deliveryTimeType"": ""DELIVERY_AT_DESIGNATED_TIME"",
+    ""deliveryTime"": """",
+    ""remarks"": """",
+    ""priority"": 1,
+    ""assignUserId"": """",
+    ""assignUserName"": """",
+    ""orderFiles"": [
+
+    ],
+    ""pickupLocation"": {
+        ""mapPoi"": {
+
+        },
+        ""address"": """",
+        ""area"": {
+            ""id"": ""${areaid1}"",
+            ""nickName"": ""${areaname1}""
+        }
+    },
+    ""serviceLocation"": {
+        ""mapPoi"": {
+
+        },
+        ""address"": """",
+        ""area"": {
+            ""id"": ""${areaid2}"",
+            ""nickName"": ""${areaname2}""
+        }
+    },
+    ""shippingInformation"": ""${formMatters}"",
+    ""timeBetweenDistances"": 0
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,运送列表-人员列表,http,/sysmgt/rest/v1/user/page,"{""filterName"":"""",""departmentId"":"""",""pageSize"":20,""pageNumber"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,运送列表-位置信息,http,/ilogbasic/rest/v1/area/tree,,GET,{'content-type': 'application/json'},,msg,等于,success
+中央运送,运送列表-运送单详情,http,/ilogmaintenance/rest/v1/transport/getShippingWorkOrder/${id}?isMobile=false,,POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,运送列表-运送单列表,http,/ilogmaintenance/rest/v1/order/common/page,"{""orderCommonType"":""TRANSPORT"",""orderRequestStatus"":""NOT_RECEIVED"",""timeoutStatus"":"""",""filterKey"":"""",""inquiry"":"""",""shippingWorkOrderPageRequest"":{""timelinessEnum"":"""",""objectId"":"""",""nickName"":"""",""shippingMethodId"":""""},""pageNumber"":0,""pageSize"":20}",POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,运送列表-编辑运送单,http,/ilogmaintenance/rest/v1/transport/updateOrder,"{
+    ""id"": ""${id}"",
+    ""applyUser"": {
+        ""id"": ""${userid1}"",
+        ""nickName"": ""${username1}"",
+        ""phone"": ""${userphone1}""
+    },
+    ""applyUserID"": ""${userid1}"",
+    ""applyDepart"": ${depart1},
+    ""recipientUser"": {
+        ""id"": ""${userid2}"",
+        ""nickName"": ""${username2}"",
+        ""phone"": ""${userphone2}""
+    },
+    ""recipientUserID"": ""${userid2}"",
+    ""recipientDepart"": ${depart2},
+    ""shippingObjectId"": ""${objectid}"",
+    ""shippingObjectName"": ""${objectname}"",
+    ""shippingMethodId"": ""${methodid}"",
+    ""shippingMethodName"": """",
+    ""deliveryTimeType"": ""DELIVERY_AT_DESIGNATED_TIME"",
+    ""deliveryTime"": """",
+    ""remarks"": """",
+    ""priority"": 4,
+    ""assignUserId"": """",
+    ""assignUserName"": """",
+    ""orderFiles"": [
+
+    ],
+    ""pickupAddressId"": """",
+    ""pickupAddressName"": """",
+    ""serviceId"": """",
+    ""pickupLocation"": {
+        ""address"": """",
+        ""area"": {
+            ""id"": ""${areaid1}"",
+            ""nickName"": ""${areaname1}""
+        },
+        ""mapPoi"": null,
+        ""indoorMapEnabled"": false
+    },
+    ""serviceLocation"": {
+        ""address"": """",
+        ""area"": {
+            ""id"": ""${areaid2}"",
+            ""nickName"": ""${areaname2}""
+        },
+        ""mapPoi"": null,
+        ""indoorMapEnabled"": false
+    },
+    ""serviceName"": """",
+    ""shippingInformation"": ""${formMatters}"",
+    ""timeBetweenDistances"": 0
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,运送列表-派单,http,/ilogmaintenance/rest/v1/order/common/reallocation?orderId=${id}&userId=${userid},,POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,运送列表-派单人员列表,http,/ilogmaintenance/rest/v1/order/common/designated/user/page,"{""pageNumber"":0,""pageSize"":9,""dispatch"":true,""targetId"":""bb583070-fe4c-4dbd-9ab9-04d8b34fd6c9"",""type"":""TRANSPORT""}",POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,运送列表-运送列表筛选,http,/ilogmaintenance/rest/v1/order/common/page,"{""orderCommonType"":""TRANSPORT"",""orderRequestStatus"":""NOT_RECEIVED"",""timeoutStatus"":"""",""inquiry"":"""",""shippingWorkOrderPageRequest"":{""timelinessEnum"":"""",""nickName"":""${id}"",""completedStartTime"":"""",""completedEndTime"":""""},""sorts"":[],""filterKey"":""${id}"",""createdDateMin"":"""",""createdDateMax"":"""",""takeTimeMin"":"""",""takeTimeMax"":"""",""pageNumber"":0,""pageSize"":20}",POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,运送对象-列表,http,/ilogmaintenance/rest/v1/shipping/object/mgmt/page,"{""filterKey"":"""",""departmentId"":"""",""pageSize"":20,""pageNumber"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,运送对象-新增,http,/ilogmaintenance/rest/v1/shipping/object/mgmt,"{""dictIds"":[""${id}""],""nickName"":""自动化测试"",""remarks"":"""",""formMatters"":""[{\""label\"":\""测试\"",\""type\"":\""text\"",\""hasRange\"":false,\""rangeStart\"":null,\""rangeEnd\"":null,\""value\"":null,\""options\"":[{\""value\"":\""\""}]}]""}",POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,运送对象-运送方式列表,http,/sysmgt/rest/v1/dict/dictionary/list/transport-object-type,,GET,{'content-type': 'application/json'},,msg,等于,success
+中央运送,运送对象-编辑,http,/ilogmaintenance/rest/v1/shipping/object/mgmt/update/${objectid},"{""dictIds"":[""${id}""],""nickName"":""自动化测试编辑"",""remarks"":"""",""formMatters"":""[{\""label\"":\""测试\"",\""type\"":\""text\"",\""hasRange\"":false,\""rangeStart\"":null,\""rangeEnd\"":null,\""value\"":null,\""options\"":[{\""value\"":\""\""}]}]""}",PUT,{'content-type': 'application/json'},,msg,等于,success
+中央运送,运送对象-删除,http,/ilogmaintenance/rest/v1/shipping/object/mgmt/${objectid},,DELETE,{'content-type': 'application/json'},,msg,等于,success
+中央运送,运送对象-详情,http,/ilogmaintenance/rest/v1/shipping/object/mgmt/${objectid},,GET,{'content-type': 'application/json'},,msg,等于,success
+中央运送,运送对象-筛选,http,/ilogmaintenance/rest/v1/shipping/object/mgmt/page,"{""filterKey"":""${name}"",""departmentId"":"""",""pageSize"":20,""pageNumber"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,移动端-运送列表,http,/ilogmaintenance/rest/v1/order/common/mobile/page,"{""orderCommonType"":""TRANSPORT"",""orderRequestMobileType"":""MY_SHIPPING_ALL"",""nickName"":"""",""pageNumber"":0,""pageSize"":10}",POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,移动端-运送任务-今日概况,http,/ilogmaintenance/rest/v1/order/common/today/maintenance/summary?orderType=TRANSPORT,,GET,{'content-type': 'application/json'},,msg,等于,success
+中央运送,移动端-运送任务-工单池数量,http,/ilogmaintenance/rest/v1/order/common/mobile/total/canTake/TRANSPORT,,GET,{'content-type': 'application/json'},,msg,等于,success
+中央运送,移动端-运送任务-工单池列表,http,/ilogmaintenance/rest/v1/order/common/mobile/page,"{""orderCommonType"":""TRANSPORT"",""pageNumber"":0,""pageSize"":10,""nickName"":"""",""orderRequestMobileType"":""CAN_TAKE"",""sorts"":[]}",POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,移动端-运送任务-转派给我,http,/ilogmaintenance/rest/v1/order/common/mobile/page,"{""orderCommonType"":""TRANSPORT"",""pageNumber"":0,""pageSize"":10,""nickName"":"""",""orderRequestMobileType"":""DISPATCH_TO_ME"",""sorts"":[{""property"":""priority"",""asc"":false,""nullHandling"":true}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,移动端-运送任务-转派他人,http,/ilogmaintenance/rest/v1/order/common/mobile/page,"{""orderCommonType"":""TRANSPORT"",""pageNumber"":0,""pageSize"":10,""nickName"":"""",""orderRequestMobileType"":""TRANSFER_TO_ANOTHER"",""sorts"":[{""property"":""priority"",""asc"":false,""nullHandling"":true}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,移动端-运送任务-我的任务,http,/ilogmaintenance/rest/v1/order/common/mobile/page,"{""orderCommonType"":""TRANSPORT"",""pageNumber"":0,""pageSize"":10,""nickName"":"""",""orderRequestMobileType"":""HAS_RECEIVED"",""sorts"":[{""property"":""priority"",""asc"":false,""nullHandling"":true}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,移动端-运送任务-历史工单,http,/ilogmaintenance/rest/v1/order/common/mobile/page,"{""orderCommonType"":""TRANSPORT"",""pageNumber"":0,""pageSize"":10,""nickName"":"""",""orderRequestMobileType"":""HISTORY"",""sorts"":[{""property"":""priority"",""asc"":false,""nullHandling"":true}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,移动端-运送任务-接单,http,/ilogmaintenance/rest/v1/order/common/mobile/take?orderId=${orderid},,POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,移动端-运送任务-开始工单,http,/ilogmaintenance/rest/v1/order/common/mobile/start?orderId=${orderid},,POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,移动端-运送任务-揽件,http,/ilogmaintenance/rest/v1/transport/receiving,${pickargument},POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,移动端-运送任务-送达,http,/ilogmaintenance/rest/v1/transport/deliveryOrder,${receivingargument},POST,{'content-type': 'application/json'},,msg,等于,success
+中央运送,移动端-运送任务-交接码状态,http,/ilogmaintenance/rest/v1/transport/query/scan/verify,,GET,{'content-type': 'application/json'},,msg,等于,success

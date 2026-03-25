@@ -1,0 +1,1108 @@
+模块名,接口描述,Scheme,接口地址,接口参数,请求方式,请求头,响应结果（非必填）,校验字段,校验方式,预期结果
+资产管理,资产验收-选择采购单列表,http,/ilogpurchase/rest/v1/procure/page/asset,"{""pageNumber"":0,""pageSize"":20,""total"":0,""filterKey"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产验收-选择物资列表,http,/ilogpurchase/rest/v1/procure/${cgid},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产验收-新增购入验收,http,/ilogasset/rest/v1/acceptanceInfo/save,"{
+    ""id"": """",
+    ""source"": ""PURCHASE"",
+    ""purchaseOrder"": ""${procureNo}"",
+    ""purchaseOrderId"": ""${procureId}"",
+    ""supplier"": ""${supplierName}"",
+    ""supplierId"": ""${supplierId}"",
+    ""remark"": """",
+    ""files"": [],
+    ""materials"": [
+        {
+            ""fkMaterialId"": ""${materialId}"",
+            ""fkId"": ""${fkid}"",
+            ""nickName"": ""${materialName}"",
+            ""purchasePrice"": ${procurePrice},
+            ""notAccepted"": """",
+            ""specificationModel"": null,
+            ""unit"": ""${procureUnit}"",
+            ""acceptanceQuantity"": 1,
+            ""purchaseQuantity"": ${contactOrderCount},
+            ""acceptedQuantity"": ${checkCount},
+            ""unitName"": ""${procureUnitName}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产验收-新增其他方式验收,http,/ilogasset/rest/v1/acceptanceInfo/save,"{
+    ""id"": """",
+    ""source"": ""${sourcetype}"",
+    ""supplier"": ""资产验收测试供应商"",
+    ""supplierId"": ""资产验收测试供应商"",
+    ""remark"": """",
+    ""files"": [
+
+    ],
+    ""materials"": [
+        {
+            ""id"": """",
+            ""fkMaterialId"": """",
+            ""nickName"": ""测试验收资产"",
+            ""specificationModel"": ""W-520"",
+            ""unit"": ""${unitid}"",
+            ""acceptanceQuantity"": 1,
+            ""unitName"": ""${unitname}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产验收-计量单位列表,http,/sysmgt/rest/v1/dict/dictionary/list/common-unit,,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产验收-验收列表,http,/ilogasset/rest/v1/acceptanceInfo/pageQuery,"{""pageNumber"":0,""pageSize"":20,""total"":14,""filterKey"":"""",""source"":"""",""departId"":"""",""startTime"":"""",""endTime"":"""",""sorts"":[]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产验收-验收列表筛选,http,/ilogasset/rest/v1/acceptanceInfo/pageQuery,"{""pageNumber"":0,""pageSize"":20,""total"":14,""filterKey"":""${orderNumber}"",""source"":"""",""departId"":"""",""startTime"":"""",""endTime"":"""",""sorts"":[]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产验收-验收单详情,http,/ilogasset/rest/v1/acceptanceInfo/queryDetail/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产档案-查看资产分类,http,/sysmgt/rest/v1/dict/dictionary/tree,"{""filterKey"":"""",""parentCode"":""basic-facility-type""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产档案-资产位置选择列表,http,/ilogbasic/rest/v1/area/tree,,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产档案-负责人列表,http,/sysmgt/rest/v1/user/page,"{""filterName"":""测试账号"",""departmentId"":"""",""pageSize"":20,""pageNumber"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产档案-供应商列表,http,/ilogbasic/rest/v1/supplier/page,"{""pageSize"":10,""pageNumber"":0,""filterKey"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产档案-直接登记购入,http,/ilogasset/rest/v1/archival/saveWarrantyInfo,"{
+    ""sourceType"": ""PURCHASE"",
+    ""usageStatus"": """",
+    ""location"": {
+        ""address"": """",
+        ""area"": {
+            ""id"": ""${areaid}"",
+            ""nickName"": ""${areanickname}""
+        }
+    },
+    ""headId"": ""${userid}"",
+    ""head"": ""${username}"",
+    ""areaId"": """",
+    ""area"": """",
+    ""positionDescription"": """",
+    ""mapId"": """",
+    ""mapName"": """",
+    ""rfid"": """",
+    ""assetType"": ""${assettype}"",
+    ""assetTypeName"": ""${assettypename}"",
+    ""nickName"": ""资产接口自动化测试"",
+    ""code"": """",
+    ""price"": ""1000"",
+    ""specificationModel"": """",
+    ""serialNumber"": """",
+    ""measurementUnitId"": """",
+    ""measurementUnit"": """",
+    ""archivesStatus"": ""ENABLE"",
+    ""description"": """",
+    ""photos"": [
+
+    ],
+    ""labels"": [
+
+    ],
+    ""devices"": [
+
+    ],
+    ""warehousingDate"": ""${date_time}"",
+    ""supplier"": ""${companyid}"",
+    ""supplierName"": ""${companyname}"",
+    ""maintenanceSupplier"": """",
+    ""maintenanceSupplierName"": """",
+    ""productionDate"": """",
+    ""installDate"": """",
+    ""enablingDate"": "" ${date_time}"",
+    ""scrapDateType"": """",
+    ""scrapDate"": """",
+    ""advanceWarningDays"": """",
+    ""unit"": ""YEAR"",
+    ""usageDuration"": """",
+    ""mainAssetInfo"": {
+        ""id"": """",
+        ""nickName"": """",
+        ""code"": """",
+        ""assetTypeName"": """",
+        ""specificationModel"": """",
+        ""head"": """",
+        ""user"": """",
+        ""usageStatus"": """"
+    },
+    ""hasAffiliatedAssets"": false,
+    ""spareParts"": [
+
+    ],
+    ""files"": [
+
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产档案-直接登记自研自建,http,/ilogasset/rest/v1/archival/saveWarrantyInfo,"{
+    ""sourceType"": ""SELF"",
+    ""usageStatus"": """",
+    ""location"": {
+        ""address"": """",
+        ""area"": {
+            ""id"": ""${areaid}"",
+            ""nickName"": ""${areanickname}""
+        }
+    },
+    ""headId"": ""${userid}"",
+    ""head"": ""${username}"",
+    ""areaId"": """",
+    ""area"": """",
+    ""positionDescription"": """",
+    ""mapId"": """",
+    ""mapName"": """",
+    ""rfid"": """",
+    ""assetType"": ""${assettype}"",
+    ""assetTypeName"": ""${assettypename}"",
+    ""nickName"": ""资产接口自动化测试"",
+    ""code"": """",
+    ""price"": ""1000"",
+    ""specificationModel"": """",
+    ""serialNumber"": """",
+    ""measurementUnitId"": """",
+    ""measurementUnit"": """",
+    ""archivesStatus"": ""ENABLE"",
+    ""description"": """",
+    ""photos"": [
+
+    ],
+    ""labels"": [
+
+    ],
+    ""devices"": [
+
+    ],
+    ""warehousingDate"": ""${date_time}"",
+    ""supplier"": ""${companyid}"",
+    ""supplierName"": ""${companyname}"",
+    ""maintenanceSupplier"": """",
+    ""maintenanceSupplierName"": """",
+    ""productionDate"": """",
+    ""installDate"": """",
+    ""enablingDate"": "" ${date_time}"",
+    ""scrapDateType"": """",
+    ""scrapDate"": """",
+    ""advanceWarningDays"": """",
+    ""unit"": ""YEAR"",
+    ""usageDuration"": """",
+    ""mainAssetInfo"": {
+        ""id"": """",
+        ""nickName"": """",
+        ""code"": """",
+        ""assetTypeName"": """",
+        ""specificationModel"": """",
+        ""head"": """",
+        ""user"": """",
+        ""usageStatus"": """"
+    },
+    ""hasAffiliatedAssets"": false,
+    ""spareParts"": [
+
+    ],
+    ""files"": [
+
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产档案-直接登记租赁,http,/ilogasset/rest/v1/archival/saveLeasingInfo,"{
+    ""spareParts"": [
+
+    ],
+    ""mainAssetInfo"": {
+        ""id"": null,
+        ""nickName"": null,
+        ""code"": null,
+        ""assetTypeName"": null,
+        ""specificationModel"": null
+    },
+    ""files"": [
+
+    ],
+    ""acceptanceDetailId"": """",
+    ""materialId"": """",
+    ""location"": {
+        ""address"": """",
+        ""area"": {
+            ""id"": ""${areaid}"",
+            ""nickName"": ""${{areanickname}}""
+        }
+    },
+    ""headId"": ""${userid}"",
+    ""head"": ""${username}"",
+    ""assetType"": ""${assettype}"",
+    ""assetTypeName"": ""${assettypename}"",
+    ""nickName"": ""测试租赁yf"",
+    ""price"": 1000,
+    ""archivesStatus"": ""ENABLE"",
+    ""photos"": [
+
+    ],
+    ""labels"": [
+
+    ],
+    ""devices"": [
+
+    ],
+    ""warehousingDate"": ""${date_time}"",
+    ""leaser"": ""租赁公司"",
+    ""leaseDeposit"": ""2000"",
+    ""leaseStartDate"": ""${date_time}"",
+    ""terminationDate"": """",
+    ""paymentCycle"": """",
+    ""payment"": """",
+    ""paymentWarning"": """",
+    ""leaseTerminationWarning"": """",
+    ""sourceType"": ""LEASE""
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产档案-直接登记试用,http,/ilogasset/rest/v1/archival/saveTrialInfo,"{
+    ""spareParts"": [
+
+    ],
+    ""mainAssetInfo"": {
+        ""id"": null,
+        ""nickName"": null,
+        ""code"": null,
+        ""assetTypeName"": null,
+        ""specificationModel"": null
+    },
+    ""files"": [
+
+    ],
+    ""acceptanceDetailId"": """",
+    ""materialId"": """",
+    ""location"": {
+        ""address"": """",
+        ""area"": {
+            ""id"": ""${areaid}"",
+            ""nickName"": ""${{areanickname}}""
+        }
+    },
+    ""headId"": ""${userid}"",
+    ""head"": ""${username}"",
+    ""assetType"": ""${assettype}"",
+    ""assetTypeName"": ""${assettypename}"",
+    ""nickName"": ""测试试用yf"",
+    ""price"": 1000,
+    ""archivesStatus"": ""ENABLE"",
+    ""photos"": [
+
+    ],
+    ""labels"": [
+
+    ],
+    ""devices"": [
+
+    ],
+    ""warehousingDate"": ""${date_time}"",
+    ""providerName"": ""大米公司"",
+    ""trialEndTime"": ""${date_time}"",
+    ""trialStartTime"": ""${date_time}"",
+    ""terminationDate"": """",
+    ""paymentCycle"": """",
+    ""payment"": """",
+    ""paymentWarning"": """",
+    ""leaseTerminationWarning"": """",
+    ""sourceType"": ""PROBATION""
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产档案-直接登记捐赠,http,/ilogasset/rest/v1/archival/saveWarrantyInfo,"{
+    ""sourceType"": ""DONATION"",
+    ""usageStatus"": """",
+    ""location"": {
+        ""address"": """",
+        ""area"": {
+            ""id"": ""${areaid}"",
+            ""nickName"": ""${areanickname}""
+        }
+    },
+    ""headId"": ""${userid}"",
+    ""head"": ""${username}"",
+    ""areaId"": """",
+    ""area"": """",
+    ""positionDescription"": """",
+    ""mapId"": """",
+    ""mapName"": """",
+    ""rfid"": """",
+    ""assetType"": ""${assettype}"",
+    ""assetTypeName"": ""${assettypename}"",
+    ""nickName"": ""捐赠测试"",
+    ""code"": """",
+    ""price"": ""1000"",
+    ""specificationModel"": """",
+    ""serialNumber"": """",
+    ""measurementUnitId"": """",
+    ""measurementUnit"": """",
+    ""archivesStatus"": ""ENABLE"",
+    ""description"": """",
+    ""photos"": [
+
+    ],
+    ""labels"": [
+
+    ],
+    ""devices"": [
+
+    ],
+    ""warehousingDate"": ""${date_time}"",
+    ""donor"": ""捐赠方"",
+    ""maintenanceSupplier"": """",
+    ""maintenanceSupplierName"": """",
+    ""productionDate"": """",
+    ""installDate"": """",
+    ""enablingDate"": "" ${date_time}"",
+    ""scrapDateType"": """",
+    ""scrapDate"": """",
+    ""advanceWarningDays"": """",
+    ""unit"": ""YEAR"",
+    ""usageDuration"": """",
+    ""mainAssetInfo"": {
+        ""id"": """",
+        ""nickName"": """",
+        ""code"": """",
+        ""assetTypeName"": """",
+        ""specificationModel"": """",
+        ""head"": """",
+        ""user"": """",
+        ""usageStatus"": """"
+    },
+    ""hasAffiliatedAssets"": false,
+    ""spareParts"": [
+
+    ],
+    ""files"": [
+
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产档案-资产列表,http,/ilogasset/rest/v1/archival/pageQuery,"{""hasDisposedOf"":false,""pageNumber"":0,""pageSize"":10,""assetType"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产档案-资产列表筛选,http,/ilogasset/rest/v1/archival/pageQuery,"{""filterKey"":""${assetcode}"",""hasDisposedOf"":false,""pageNumber"":0,""pageSize"":10,""assetType"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产档案-资产详情,http,/ilogasset/rest/v1/archival/findArchivalInfo/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产档案-资产删除,http,/ilogasset/rest/v1/archival/delete/${id},,DELETE,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产领用-获取领用资产,http,/ilogasset/rest/v1/archival/pageQueryByUsageStatus,"{""filterKey"":"""",""assetType"":"""",""pageSize"":20,""pageNumber"":0,""usageStatus"":""IDLE"",""isUsedPage"":true}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产领用-新增领用,http,/ilogasset/rest/v1/asset/receive/createReceive,"{
+    ""person"": ""${username}"",
+    ""personId"": ""${userid}"",
+    ""department"": ""${department}"",
+    ""departmentId"": ""${departmentid}"",
+    ""manager"": ""${username}"",
+    ""managerId"": ""${userid}"",
+    ""assetItems"": [
+        {
+            ""nickName"": ""${assetnickName}"",
+            ""code"": ""${assetcode}"",
+            ""assetId"": ""${assetid}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产领用-领用列表筛选,http,/ilogasset/rest/v1/asset/receive/receiveOrderPageQuery,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""personId"":""${userid}"",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""sorts"":[{""property"":""createdDate""}],""person"":""${userid}"",""department"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产领用-领用单详情,http,/ilogasset/rest/v1/asset/receive/receiveInfoQuery/${id},,POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产领用-领用列表,http,/ilogasset/rest/v1/asset/receive/receiveOrderPageQuery,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""personId"":"""",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""sorts"":[{""property"":""createdDate""}],""person"":"""",""department"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产借用-新增借用,http,/ilogasset/rest/v1/asset/borrow,"{
+    ""person"": ""${username}"",
+    ""personId"": ""${userid}"",
+    ""department"": ""${department}"",
+    ""departmentId"": ""${departmentid}"",
+    ""expectedRestitutionDate"": ""${date}"",
+    ""manager"": ""${username}"",
+    ""managerId"": ""${userid}"",
+    ""assetItems"": [
+        {
+            ""nickName"": ""${assetnickName}"",
+            ""code"": ""${assetcode}"",
+            ""assetId"": ""${assetid}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产借用-借用列表,http,/ilogasset/rest/v1/asset/borrow/queryBorrowPage,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""personId"":"""",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""filterKey"":"""",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产借用-借用列表筛选,http,/ilogasset/rest/v1/asset/borrow/queryBorrowPage,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""personId"":"""",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""filterKey"":""${orderNumber}"",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产借用-借用单详情,http,/ilogasset/rest/v1/asset/borrow/queryBorrowInfo/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产退还-新增退还,http,/ilogasset/rest/v1/asset/refund/createRefund,"{
+    ""person"": ""${username}"",
+    ""personId"": ""${userid}"",
+    ""department"": ""${department}"",
+    ""departmentId"": ""${departmentid}"",
+    ""manager"": ""${username}"",
+    ""managerId"": ""${userid}"",
+    ""assetItems"": [
+        {
+            ""nickName"":""${assetnickName}"",
+            ""code"": ""${assetcode}"",
+            ""assetId"": ""${assetid}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产退还-获取退还资产,http,/ilogasset/rest/v1/archival/pageQueryByUsageStatus,"{""filterKey"":"""",""assetType"":"""",""pageSize"":20,""pageNumber"":0,""usageStatus"":""USED""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产退还-退还列表,http,/ilogasset/rest/v1/asset/refund/refundOrderPageQuery,"{""pageNumber"":0,""pageSize"":10,""personId"":"""",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""filterKey"":"""",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产退还-退还列表筛选,http,/ilogasset/rest/v1/asset/refund/refundOrderPageQuery,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""personId"":"""",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""filterKey"":""${orderNumber}"",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产退还-退还单详情,http,/ilogasset/rest/v1/asset/refund/refundInfoQuery/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产归还-新增归还,http,/ilogasset/rest/v1/asset/restitution,"{
+    ""person"": ""${username}"",
+    ""personId"": ""${userid}"",
+    ""department"": ""${department}"",
+    ""departmentId"": ""${departmentid}"",
+    ""manager"": ""${username}"",
+    ""managerId"": ""${userid}"",
+    ""assetItems"": [
+        {
+            ""nickName"":""${assetnickName}"",
+            ""code"": ""${assetcode}"",
+            ""borrowingExpirationDate"":""2024-12-05"",
+            ""assetId"": ""${assetid}"",
+            ""assetType"":""${assetType}"",
+            ""assetTypeName"":""${assetTypeName}"",
+            ""id"":""${assetid}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产归还-获取归还资产,http,/ilogasset/rest/v1/archival/pageQueryByUsageStatus,"{""filterKey"":"""",""assetType"":"""",""pageSize"":20,""pageNumber"":0,""usageStatus"":""BORROWED""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产归还-归还列表,http,/ilogasset/rest/v1/asset/restitution/restitutionPageQuery,"{""pageNumber"":0,""pageSize"":10,""personId"":"""",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""filterKey"":"""",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产归还-归还列表筛选,http,/ilogasset/rest/v1/asset/restitution/restitutionPageQuery,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""personId"":"""",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""filterKey"":""${orderNumber}"",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产归还-归还单详情,http,/ilogasset/rest/v1/asset/restitution/restitutionInfoQuery/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产调拨-新增调拨,http,/ilogasset/rest/v1/allocation/createAllocation,"{
+    ""department"": ""${department}"",
+    ""departmentId"": ""${departmentid}"",
+    ""beforeLocation"": {
+        ""mapPoi"": {
+
+        },
+        ""area"": {
+            ""id"": ""${areaid1}"",
+            ""nickName"": ""${areanickname1}""
+        },
+        ""indoorMapEnabled"": false
+    },
+    ""afterLocation"": {
+        ""mapPoi"": {
+
+        },
+        ""area"": {
+            ""id"": ""${areaid2}"",
+            ""nickName"": ""${areanickname2}""
+        },
+        ""indoorMapEnabled"": false
+    },
+    ""manager"": ""${username}"",
+    ""managerId"": ""${userid}"",
+    ""assetItems"": [
+        {
+            ""id"": ""${assetid}"",
+            ""nickName"": ""${assetnickName}"",
+            ""description"": null,
+            ""code"": ""${assetcode}"",
+            ""assetId"": ""${assetid}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产调拨-获取调拨资产,http,/ilogasset/rest/v1/archival/pageQueryByUsageStatus,"{""filterKey"":"""",""assetType"":"""",""pageSize"":20,""pageNumber"":0,""areaId"":""${areaid1}"",""usageStatus"":""IDLE"",""hasDisposedOf"":false}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产调拨-调拨列表,http,/ilogasset/rest/v1/allocation/allocationOrderPageQuery,"{""pageNumber"":0,""pageSize"":10,""startDate"":"""",""endDate"":"""",""departmentId"":"""",""filterKey"":"""",""beforeLocation"":"""",""afterLocation"":"""",""managerId"":"""",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产调拨-调拨列表筛选,http,/ilogasset/rest/v1/allocation/allocationOrderPageQuery,"{""pageNumber"":0,""pageSize"":10,""startDate"":"""",""endDate"":"""",""departmentId"":"""",""filterKey"":""${orderNumber}"",""beforeLocation"":"""",""afterLocation"":"""",""managerId"":"""",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产调拨-调拨单详情,http,/ilogasset/rest/v1/allocation/allocationInfoQuery/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产交接-新增交接,http,/ilogasset/rest/v1/handover/createHandover,"{
+  ""beforeHandover"": ""${username1}"",
+  ""beforeHandoverId"": ""${userid1}"",
+  ""afterHandover"": ""${username2}"",
+  ""afterHandoverId"": ""${userid2}"",
+  ""beforeDepartment"": ""${department1}"",
+  ""beforeDepartmentId"": ""${departmentid1}"",
+  ""afterDepartment"": ""${department2}"",
+  ""afterDepartmentId"": ""${departmentid2}"",
+  ""handoverTime"": """",
+  ""status"": """",
+  ""assetItems"": [
+    {
+      ""id"": ""${assetid}"",
+      ""nickName"": ""${assetnickName}"",
+      ""assetId"": ""${assetid}"",
+      ""assetType"": """",
+      ""code"": ""${assetcode}"",
+      ""inventoryTaskCode"": """",
+      ""inventoryResultType"": """"
+    }
+  ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产交接-获取交接资产,http,/ilogasset/rest/v1/archival/pageQuery/handover/scope,"{""filterKey"":"""",""assetType"":"""",""pageSize"":20,""pageNumber"":0,""hasDisposedOf"":false,""handlingType"":""HANDOVER""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产交接-交接人列表,http,/sysmgt/rest/v1/user/page,"{""filterName"":"""",""departmentId"":"""",""pageSize"":20,""pageNumber"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产交接-交接列表,http,/ilogasset/rest/v1/handover/handoverOrderPageQuery,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""person"":"""",""personId"":"""",""startDate"":"""",""endDate"":"""",""department"":"""",""departmentId"":"""",""filterKey"":"""",""beforeDepartmentId"":"""",""afterDepartmentId"":"""",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产交接-交接列表筛选,http,/ilogasset/rest/v1/handover/handoverOrderPageQuery,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""person"":"""",""personId"":"""",""startDate"":"""",""endDate"":"""",""department"":"""",""departmentId"":"""",""filterKey"":""${orderNumber}"",""beforeDepartmentId"":"""",""afterDepartmentId"":"""",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产交接-交接单详情,http,/ilogasset/rest/v1/handover/handoverInfoQuery/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产处置-新增处置,http,/ilogasset/rest/v1/disposition/createDisposition,"{
+    ""person"": ""${username}"",
+    ""personId"": ""${userid}"",
+    ""department"": ""${department}"",
+    ""departmentId"": ""${departmentid}"",
+    ""dispositionType"": ""${distype}"",
+    ""assetItems"": [
+        {
+            ""nickName"":""${assetnickName}"",
+            ""code"": ""${assetcode}"",
+            ""id"": ""${assetid}"",
+            ""price"":""${price}"",
+            ""assetId"":""${assetid}"",
+             ""netValue"":""${netValue}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产处置-获取处置资产,http,/ilogasset/rest/v1/archival/queryDisposalArchival,"{""filterKey"":"""",""assetType"":"""",""pageSize"":20,""pageNumber"":0,""dispositionType"":""${distype}"",""hasDisposedOf"":false}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产处置-处置人列表,http,/sysmgt/rest/v1/user/page,"{""filterName"":"""",""departmentId"":"""",""pageSize"":20,""pageNumber"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产处置-处置列表,http,/ilogasset/rest/v1/disposition/dispositionOrderPageQuery,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""person"":"""",""personId"":"""",""startDate"":"""",""endDate"":"""",""department"":"""",""departmentId"":"""",""filterKey"":"""",""beforeDepartmentId"":"""",""afterDepartmentId"":"""",""dispositionType"":"""",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产处置-处置列表筛选,http,/ilogasset/rest/v1/disposition/dispositionOrderPageQuery,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""person"":"""",""personId"":"""",""startDate"":"""",""endDate"":"""",""department"":"""",""departmentId"":"""",""filterKey"":""${orderNumber}"",""beforeDepartmentId"":"""",""afterDepartmentId"":"""",""dispositionType"":"""",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产处置-处置单详情,http,/ilogasset/rest/v1/disposition/dispositionInfoQuery/rentingTermination/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产台账-资产台账列表,http,/ilogasset/rest/v1/ledger/pageQueryAssetLedger,"{""assetType"":"""",""pageNumber"":0,""pageSize"":20}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产台账-资产台账列表筛选,http,/ilogasset/rest/v1/ledger/pageQueryAssetLedger,"{""filterKey"":""${code}"",""assetType"":"""",""pageNumber"":0,""pageSize"":20}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产台账-产权人台账列表,http,/ilogasset/rest/v1/ledger/pageQueryPropertyOwnerLedger,"{""assetType"":"""",""pageNumber"":0,""pageSize"":20}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产台账-产权人台账列表筛选,http,/ilogasset/rest/v1/ledger/pageQueryPropertyOwnerLedger,"{""filterKey"":""${head}"",""assetType"":"""",""pageNumber"":0,""pageSize"":20}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产台账-产权人台账详情,http,/ilogasset/rest/v1/ledger/pageQueryPropertyOwnerDetailLedger,"{""assetType"":"""",""pageNumber"":0,""pageSize"":20,""head"":""${headid}"",""departId"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产台账-使用人台账列表,http,/ilogasset/rest/v1/ledger/pageQueryUserLedger,"{""assetType"":"""",""pageNumber"":0,""pageSize"":20}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产台账-使用人台账列表筛选,http,/ilogasset/rest/v1/ledger/pageQueryUserLedger,"{""filterKey"":""${assetUser}"",""assetType"":"""",""pageNumber"":0,""pageSize"":20}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产台账-使用人台账详情,http,/ilogasset/rest/v1/ledger/pageQueryUserAcquisitionDetailLedger,"{""assetType"":"""",""pageNumber"":0,""pageSize"":20,""${assetUserId}"":""d45da470-5d5b-4302-b8da-a28cd694b840"",""departId"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产台账-盘点台账列表,http,/ilogasset/rest/v1/ledger/pageQueryInventoryLedger,"{""assetType"":"""",""pageNumber"":0,""pageSize"":20}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产台账-盘点台账列表筛选,http,/ilogasset/rest/v1/ledger/pageQueryInventoryLedger,"{""filterKey"":""${code}"",""assetType"":"""",""pageNumber"":0,""pageSize"":20}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产台账-盘点台账盘点记录,http,/ilogasset/rest/v1/ledger/pageQueryInventoryDetailLedger,"{""assetType"":"""",""pageNumber"":0,""pageSize"":20,""archivesId"":""${id}""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产台账-验收台账列表,http,/ilogasset/rest/v1/ledger/pageQueryAcceptanceDetailsLedger,"{""assetType"":"""",""pageNumber"":0,""pageSize"":20}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产台账-验收台账列表筛选,http,/ilogasset/rest/v1/ledger/pageQueryAcceptanceDetailsLedger,"{""filterKey"":""${nickName}"",""assetType"":"""",""pageNumber"":0,""pageSize"":20}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-新增盘点计划,http,/ilogasset/rest/v1/asset/inventory/plan,"{""nickName"":""资产盘点自动化测试"",""chargerId"":""${userid}"",""chargerName"":""${username}"",""executor"":""ASSET_IN_CHARGE"",""executeCycle"":""SINGLE"",""inventoryTime"":""${now}"",""month"":"""",""day"":"""",""monthSeq"":"""",""description"":"""",""enable"":true,""inventoryRange"":""SPECIAL_ASSET"",""assets"":[""${assetid}""],""assetTypes"":[],""assetUsers"":[],""assetAreas"":[],""assetUsageStatus"":[],""assetHealthStatus"":[],""assetTags"":[]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-盘点负责人列表,http,/sysmgt/rest/v1/user/page,"{""filterName"":"""",""departmentId"":"""",""pageSize"":20,""pageNumber"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-盘点资产列表,http,/ilogasset/rest/v1/archival/pageQueryInventoryableAssets,"{""filterKey"":"""",""assetType"":"""",""pageSize"":20,""pageNumber"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-编辑盘点计划,http,/ilogasset/rest/v1/asset/inventory/plan/${planid},"{""nickName"":""资产盘点自动化测试编辑"",""chargerId"":""${userid}"",""chargerName"":""${username}"",""executor"":""ASSET_IN_CHARGE"",""executeCycle"":""SINGLE"",""inventoryTime"":""${now}"",""month"":"""",""day"":"""",""monthSeq"":"""",""description"":"""",""enable"":false,""inventoryRange"":""SPECIAL_ASSET"",""assets"":[""${assetid}""],""assetTypes"":[],""assetUsers"":[],""assetAreas"":[],""assetUsageStatus"":[],""assetHealthStatus"":[],""assetTags"":[]}",PUT,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-盘点计划列表,http,/ilogasset/rest/v1/asset/inventory/plan/page,"{""pageNumber"":0,""pageSize"":20,""total"":3,""filterKey"":"""",""executeType"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-删除盘点计划,http,/ilogasset/rest/v1/asset/inventory/plan/${planid},,DELETE,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-盘点任务列表筛选,http,/ilogasset/rest/v1/asset/inventory/task/page,"{""filterKey"":""${orderNumber}"",""pageNumber"":0,""pageSize"":10,""total"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-盘点任务列表,http,/ilogasset/rest/v1/asset/inventory/task/page,"{""filterKey"":"""",""pageNumber"":0,""pageSize"":10,""total"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-未盘点人员提醒,http,/ilogasset/rest/v1/asset/inventory/task/batch/message/${taskid},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-提交盘点任务,http,/ilogasset/rest/v1/asset/inventory/task/submit/result/${taskid},,PUT,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-盘点单列表,http,/ilogasset/rest/v1/asset/inventory/order/page,"{""filterKey"":"""",""status"":"""",""pageNumber"":0,""pageSize"":10,""total"":3}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-盘点单列表筛选,http,/ilogasset/rest/v1/asset/inventory/order/page,"{""status"":""PENDING"",""filterKey"":""${nickName}"",""pageNumber"":0,""pageSize"":10,""total"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-盘点资产,http,/ilogasset/rest/v1/asset/inventory/order/record/submit,"{""id"":""${assetid}"",""orderId"":""${orderid}"",""result"":""${result}""}",PUT,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-盘点单资产列表,http,/ilogasset/rest/v1/asset/inventory/order/item/page,"{""pageNumber"":0,""pageSize"":10,""total"":0,""filterKey"":"""",""orderId"":""${orderid}"",""result"":""ALL""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-添加盘盈资产,http,/ilogasset/rest/v1/asset/inventory/order/add/profit/record,"{""assetId"":""${assetid1}"",""orderId"":""${orderid}""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-删除盘盈资产,http,/ilogasset/rest/v1/asset/inventory/order/${assetid1},,DELETE,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-提交盘点单,http,/ilogasset/rest/v1/asset/inventory/order/all/submit/${orderid},,PUT,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产盘点-重新盘点,http,/ilogasset/rest/v1/asset/inventory/order/re-invent/${orderid},,PUT,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产配额-新增,http,ilogasset/rest/v1/asset/quota,"{""id"":"""",""nickName"":""自动化测试"",""description"":"""",""enable"":true,""scenario"":[""ASSET_ACQUISITION"",""ASSET_BORROWING""],""items"":[{""departmentId"":[""${departmentid}""],""assetType"":[""${assettypeid}""],""quotaCycleType"":""LONG_TERM"",""quotaUnit"":""COUNT"",""quotaQuantity"":""10""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产配额-科室列表,http,/sysmgt/rest/v1/depart/tree,,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产配额-资产类型列表,http,/sysmgt/rest/v1/dict/dictionary/list/basic-facility-type,,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产配额-编辑,http,/ilogasset/rest/v1/asset/quota/${id},"{""id"":""${id}"",""nickName"":""自动化测试编辑"",""description"":"""",""scenario"":[""ASSET_ACQUISITION"",""ASSET_BORROWING""],""items"":[{""id"":""${itemid}"",""nickName"":null,""description"":null,""assetType"":[""${assettypeid}""],""quotaCycleType"":""LONG_TERM"",""quotaUnit"":""COUNT"",""quotaQuantity"":10,""departmentId"":[""${departmentid}""]}],""enable"":true}",PUT,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产配额-列表,http,/ilogasset/rest/v1/asset/quota/page,"{""filterKey"":"""",""pageSize"":10,""pageNumber"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产配额-详情,http,/ilogasset/rest/v1/asset/quota/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产配额-删除方案,http,/ilogasset/rest/v1/asset/quota/${id},,DELETE,{'content-type': 'application/json'},,msg,等于,success
+资产管理,资产配额-列表筛选,http,/ilogasset/rest/v1/asset/quota/page,"{""filterKey"":""${name}"",""pageSize"":10,""pageNumber"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,折旧设置-新增,http,/ilogasset/rest/v1/asset/depreciation/createPlan,"{""id"":"""",""nickName"":""自动化测试"",""description"":"""",""residualRate"":""80"",""assetCategory"":[{""id"":""${assettypeid}"",""nickName"":""${name}"",""children"":[],""code"":""tfsb"",""description"":null,""parentId"":null,""enable"":true,""assortId"":""${assettypeid}""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,折旧设置-编辑,http,/ilogasset/rest/v1/asset/depreciation/updatePlan,"{""id"":""${id}"",""nickName"":""自动化测试编辑"",""description"":"""",""residualRate"":""80"",""assetCategory"":[{""id"":""${assettypeid}"",""nickName"":""${name}"",""children"":[],""code"":""tfsb"",""description"":null,""parentId"":null,""enable"":true,""assortId"":""${assettypeid}""}]}",PUT,{'content-type': 'application/json'},,msg,等于,success
+资产管理,折旧设置-列表,http,/ilogasset/rest/v1/asset/depreciation/plans,"{""pageNumber"":0,""pageSize"":10,""filterKey"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,折旧设置-删除,http,/ilogasset/rest/v1/asset/depreciation/deletePlan/${id},,DELETE,{'content-type': 'application/json'},,msg,等于,success
+资产管理,折旧设置-列表筛选,http,/ilogasset/rest/v1/asset/depreciation/plans,"{""pageNumber"":0,""pageSize"":10,""filterKey"":""${name}""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产验收-新增购入验收,http,/ilogasset/rest/v1/acceptance/app/save,"{
+    ""id"": """",
+    ""source"": ""PURCHASE"",
+    ""purchaseOrder"": ""${procureNo}"",
+    ""purchaseOrderId"": ""${procureId}"",
+    ""supplier"": ""${supplierName}"",
+    ""supplierId"": ""${supplierId}"",
+    ""remark"": """",
+    ""files"": [],
+    ""materials"": [
+        {
+            ""fkMaterialId"": ""${materialId}"",
+            ""fkId"": ""${fkid}"",
+            ""nickName"": ""${materialName}"",
+            ""purchasePrice"": ${procurePrice},
+            ""notAccepted"": """",
+            ""specificationModel"": null,
+            ""unit"": ""${procureUnit}"",
+            ""acceptanceQuantity"": 1,
+            ""purchaseQuantity"": ${contactOrderCount},
+            ""acceptedQuantity"": ${checkCount},
+            ""unitName"": ""${procureUnitName}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产验收-新增其他方式验收,http,/ilogasset/rest/v1/acceptance/app/save,"{
+    ""id"": """",
+    ""source"": ""${sourcetype}"",
+    ""supplier"": ""资产验收测试供应商"",
+    ""supplierId"": ""资产验收测试供应商"",
+    ""remark"": """",
+    ""files"": [
+
+    ],
+    ""materials"": [
+        {
+            ""id"": """",
+            ""fkMaterialId"": """",
+            ""nickName"": ""测试验收资产"",
+            ""specificationModel"": ""W-520"",
+            ""unit"": ""${unitid}"",
+            ""acceptanceQuantity"": 1,
+            ""unitName"": ""${unitname}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产验收-验收列表,http,/ilogasset/rest/v1/acceptance/app/page,"{""pageNumber"":0,""pageSize"":20,""total"":14,""filterKey"":"""",""source"":"""",""departId"":"""",""startTime"":"""",""endTime"":"""",""sorts"":[]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产验收-验收列表筛选,http,/ilogasset/rest/v1/acceptance/app/page,"{""pageNumber"":0,""pageSize"":20,""total"":14,""filterKey"":""${orderNumber}"",""source"":"""",""departId"":"""",""startTime"":"""",""endTime"":"""",""sorts"":[]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产验收-验收单详情,http,/ilogasset/rest/v1/acceptance/app/detail/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产档案-直接登记购入,http,/ilogasset/rest/v1/archival/app/saveWarrantyInfo,"{
+    ""sourceType"": ""PURCHASE"",
+    ""usageStatus"": """",
+    ""location"": {
+        ""address"": """",
+        ""area"": {
+            ""id"": ""${areaid}"",
+            ""nickName"": ""${areanickname}""
+        }
+    },
+    ""headId"": ""${userid}"",
+    ""head"": ""${username}"",
+    ""areaId"": """",
+    ""area"": """",
+    ""positionDescription"": """",
+    ""mapId"": """",
+    ""mapName"": """",
+    ""rfid"": """",
+    ""assetType"": ""${assettype}"",
+    ""assetTypeName"": ""${assettypename}"",
+    ""nickName"": ""资产接口自动化测试"",
+    ""code"": """",
+    ""price"": ""1000"",
+    ""specificationModel"": """",
+    ""serialNumber"": """",
+    ""measurementUnitId"": """",
+    ""measurementUnit"": """",
+    ""archivesStatus"": ""ENABLE"",
+    ""description"": """",
+    ""photos"": [
+
+    ],
+    ""labels"": [
+
+    ],
+    ""devices"": [
+
+    ],
+    ""warehousingDate"": ""${date_time}"",
+    ""supplier"": ""${companyid}"",
+    ""supplierName"": ""${companyname}"",
+    ""maintenanceSupplier"": """",
+    ""maintenanceSupplierName"": """",
+    ""productionDate"": """",
+    ""installDate"": """",
+    ""enablingDate"": "" ${date_time}"",
+    ""scrapDateType"": """",
+    ""scrapDate"": """",
+    ""advanceWarningDays"": """",
+    ""unit"": ""YEAR"",
+    ""usageDuration"": """",
+    ""mainAssetInfo"": {
+        ""id"": """",
+        ""nickName"": """",
+        ""code"": """",
+        ""assetTypeName"": """",
+        ""specificationModel"": """",
+        ""head"": """",
+        ""user"": """",
+        ""usageStatus"": """"
+    },
+    ""hasAffiliatedAssets"": false,
+    ""spareParts"": [
+
+    ],
+    ""files"": [
+
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产档案-直接登记自研自建,http,/ilogasset/rest/v1/archival/app/saveWarrantyInfo,"{
+    ""sourceType"": ""SELF"",
+    ""usageStatus"": """",
+    ""location"": {
+        ""address"": """",
+        ""area"": {
+            ""id"": ""${areaid}"",
+            ""nickName"": ""${areanickname}""
+        }
+    },
+    ""headId"": ""${userid}"",
+    ""head"": ""${username}"",
+    ""areaId"": """",
+    ""area"": """",
+    ""positionDescription"": """",
+    ""mapId"": """",
+    ""mapName"": """",
+    ""rfid"": """",
+    ""assetType"": ""${assettype}"",
+    ""assetTypeName"": ""${assettypename}"",
+    ""nickName"": ""资产接口自动化测试"",
+    ""code"": """",
+    ""price"": ""1000"",
+    ""specificationModel"": """",
+    ""serialNumber"": """",
+    ""measurementUnitId"": """",
+    ""measurementUnit"": """",
+    ""archivesStatus"": ""ENABLE"",
+    ""description"": """",
+    ""photos"": [
+
+    ],
+    ""labels"": [
+
+    ],
+    ""devices"": [
+
+    ],
+    ""warehousingDate"": ""${date_time}"",
+    ""supplier"": ""${companyid}"",
+    ""supplierName"": ""${companyname}"",
+    ""maintenanceSupplier"": """",
+    ""maintenanceSupplierName"": """",
+    ""productionDate"": """",
+    ""installDate"": """",
+    ""enablingDate"": "" ${date_time}"",
+    ""scrapDateType"": """",
+    ""scrapDate"": """",
+    ""advanceWarningDays"": """",
+    ""unit"": ""YEAR"",
+    ""usageDuration"": """",
+    ""mainAssetInfo"": {
+        ""id"": """",
+        ""nickName"": """",
+        ""code"": """",
+        ""assetTypeName"": """",
+        ""specificationModel"": """",
+        ""head"": """",
+        ""user"": """",
+        ""usageStatus"": """"
+    },
+    ""hasAffiliatedAssets"": false,
+    ""spareParts"": [
+
+    ],
+    ""files"": [
+
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产档案-直接登记租赁,http,/ilogasset/rest/v1/archival/app/saveLeasingInfo,"{
+    ""spareParts"": [
+
+    ],
+    ""mainAssetInfo"": {
+        ""id"": null,
+        ""nickName"": null,
+        ""code"": null,
+        ""assetTypeName"": null,
+        ""specificationModel"": null
+    },
+    ""files"": [
+
+    ],
+    ""acceptanceDetailId"": """",
+    ""materialId"": """",
+    ""location"": {
+        ""address"": """",
+        ""area"": {
+            ""id"": ""${areaid}"",
+            ""nickName"": ""${{areanickname}}""
+        }
+    },
+    ""headId"": ""${userid}"",
+    ""head"": ""${username}"",
+    ""assetType"": ""${assettype}"",
+    ""assetTypeName"": ""${assettypename}"",
+    ""nickName"": ""测试租赁yf"",
+    ""price"": 1000,
+    ""archivesStatus"": ""ENABLE"",
+    ""photos"": [
+
+    ],
+    ""labels"": [
+
+    ],
+    ""devices"": [
+
+    ],
+    ""warehousingDate"": ""${date_time}"",
+    ""leaser"": ""租赁公司"",
+    ""leaseDeposit"": ""2000"",
+    ""leaseStartDate"": ""${date_time}"",
+    ""terminationDate"": """",
+    ""paymentCycle"": """",
+    ""payment"": """",
+    ""paymentWarning"": """",
+    ""leaseTerminationWarning"": """",
+    ""sourceType"": ""LEASE""
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产档案-直接登记试用,http,/ilogasset/rest/v1/archival/app/saveTrialInfo,"{
+    ""spareParts"": [
+
+    ],
+    ""mainAssetInfo"": {
+        ""id"": null,
+        ""nickName"": null,
+        ""code"": null,
+        ""assetTypeName"": null,
+        ""specificationModel"": null
+    },
+    ""files"": [
+
+    ],
+    ""acceptanceDetailId"": """",
+    ""materialId"": """",
+    ""location"": {
+        ""address"": """",
+        ""area"": {
+            ""id"": ""${areaid}"",
+            ""nickName"": ""${{areanickname}}""
+        }
+    },
+    ""headId"": ""${userid}"",
+    ""head"": ""${username}"",
+    ""assetType"": ""${assettype}"",
+    ""assetTypeName"": ""${assettypename}"",
+    ""nickName"": ""测试试用yf"",
+    ""price"": 1000,
+    ""archivesStatus"": ""ENABLE"",
+    ""photos"": [
+
+    ],
+    ""labels"": [
+
+    ],
+    ""devices"": [
+
+    ],
+    ""warehousingDate"": ""${date_time}"",
+    ""providerName"": ""大米公司"",
+    ""trialEndTime"": ""${date_time}"",
+    ""trialStartTime"": ""${date_time}"",
+    ""terminationDate"": """",
+    ""paymentCycle"": """",
+    ""payment"": """",
+    ""paymentWarning"": """",
+    ""leaseTerminationWarning"": """",
+    ""sourceType"": ""PROBATION""
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产档案-直接登记捐赠,http,/ilogasset/rest/v1/archival/app/saveWarrantyInfo,"{
+    ""sourceType"": ""DONATION"",
+    ""usageStatus"": """",
+    ""location"": {
+        ""address"": """",
+        ""area"": {
+            ""id"": ""${areaid}"",
+            ""nickName"": ""${areanickname}""
+        }
+    },
+    ""headId"": ""${userid}"",
+    ""head"": ""${username}"",
+    ""areaId"": """",
+    ""area"": """",
+    ""positionDescription"": """",
+    ""mapId"": """",
+    ""mapName"": """",
+    ""rfid"": """",
+    ""assetType"": ""${assettype}"",
+    ""assetTypeName"": ""${assettypename}"",
+    ""nickName"": ""捐赠测试"",
+    ""code"": """",
+    ""price"": ""1000"",
+    ""specificationModel"": """",
+    ""serialNumber"": """",
+    ""measurementUnitId"": """",
+    ""measurementUnit"": """",
+    ""archivesStatus"": ""ENABLE"",
+    ""description"": """",
+    ""photos"": [
+
+    ],
+    ""labels"": [
+
+    ],
+    ""devices"": [
+
+    ],
+    ""warehousingDate"": ""${date_time}"",
+    ""donor"": ""捐赠方"",
+    ""maintenanceSupplier"": """",
+    ""maintenanceSupplierName"": """",
+    ""productionDate"": """",
+    ""installDate"": """",
+    ""enablingDate"": "" ${date_time}"",
+    ""scrapDateType"": """",
+    ""scrapDate"": """",
+    ""advanceWarningDays"": """",
+    ""unit"": ""YEAR"",
+    ""usageDuration"": """",
+    ""mainAssetInfo"": {
+        ""id"": """",
+        ""nickName"": """",
+        ""code"": """",
+        ""assetTypeName"": """",
+        ""specificationModel"": """",
+        ""head"": """",
+        ""user"": """",
+        ""usageStatus"": """"
+    },
+    ""hasAffiliatedAssets"": false,
+    ""spareParts"": [
+
+    ],
+    ""files"": [
+
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产档案-资产列表,http,/ilogasset/rest/v1/archival/app/page,"{""scrapable"":false,""pageSize"":10,""pageNumber"":0,""classification"":""ALL""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产档案-资产列表筛选,http,/ilogasset/rest/v1/archival/app/page/by/filter,"{""pageSize"":100,""pageNumber"":0,""filterKey"":""${assetcode}""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产档案-资产详情,http,/ilogasset/rest/v1/archival/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产领用-新增领用,http,/ilogasset/rest/v1/asset/receive/createReceive,"{
+    ""person"": ""${username}"",
+    ""personId"": ""${userid}"",
+    ""department"": ""${department}"",
+    ""departmentId"": ""${departmentid}"",
+    ""manager"": ""${username}"",
+    ""managerId"": ""${userid}"",
+    ""assetItems"": [
+        {
+            ""nickName"": ""${assetnickName}"",
+            ""code"": ""${assetcode}"",
+            ""assetId"": ""${assetid}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产领用-领用列表筛选,http,/ilogasset/rest/v1/asset/receive/app/page,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""personId"":""${userid}"",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""sorts"":[{""property"":""createdDate""}],""person"":""${userid}"",""department"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产领用-领用单详情,http,/ilogasset/rest/v1/asset/receive/app/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产领用-领用列表,http,/ilogasset/rest/v1/asset/receive/app/page,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""personId"":"""",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""sorts"":[{""property"":""createdDate""}],""person"":"""",""department"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产领用-获取领用资产,http,/ilogasset/rest/v1/archival/app/page,"{""areaId"":"""",""typeId"":"""",""filterKey"":"""",""classification"":""AVAILABLE"",""scrapable"":false,""pageSize"":10,""pageNumber"":0,""dispositionType"":"""",""usageStatus"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产借用-新增借用,http,/ilogasset/rest/v1/asset/borrow/app,"{
+    ""person"": ""${username}"",
+    ""personId"": ""${userid}"",
+    ""department"": ""${department}"",
+    ""departmentId"": ""${departmentid}"",
+    ""expectedRestitutionDate"": ""${date}"",
+    ""manager"": ""${username}"",
+    ""managerId"": ""${userid}"",
+    ""assetItems"": [
+        {
+            ""nickName"": ""${assetnickName}"",
+            ""code"": ""${assetcode}"",
+            ""assetId"": ""${assetid}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产借用-借用列表筛选,http,/ilogasset/rest/v1/asset/borrow/app/page,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""personId"":"""",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""filterKey"":""${orderNumber}"",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产借用-借用单详情,http,/ilogasset/rest/v1/asset/borrow/app/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产借用-借用列表,http,/ilogasset/rest/v1/asset/borrow/app/page,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""personId"":"""",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""sorts"":[{""property"":""createdDate""}],""person"":"""",""department"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产借用-获取借用资产,http,/ilogasset/rest/v1/archival/app/page,"{""areaId"":"""",""typeId"":"""",""filterKey"":"""",""classification"":""AVAILABLE"",""scrapable"":false,""pageSize"":10,""pageNumber"":0,""dispositionType"":"""",""usageStatus"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产退还-新增退还,http,/ilogasset/rest/v1/asset/refund/app,"{
+    ""person"": ""${username}"",
+    ""personId"": ""${userid}"",
+    ""department"": ""${department}"",
+    ""departmentId"": ""${departmentid}"",
+    ""manager"": ""${username}"",
+    ""managerId"": ""${userid}"",
+    ""assetItems"": [
+        {
+            ""nickName"":""${assetnickName}"",
+            ""code"": ""${assetcode}"",
+            ""assetId"": ""${assetid}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产退还-获取退还资产,http,/ilogasset/rest/v1/archival/app/page,"{""areaId"":"""",""typeId"":"""",""filterKey"":"""",""classification"":""REFUNDABLE"",""scrapable"":false,""pageSize"":10,""pageNumber"":0,""dispositionType"":"""",""usageStatus"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产退还-退还列表,http,/ilogasset/rest/v1/asset/refund/app/page,"{""pageNumber"":0,""pageSize"":10,""personId"":"""",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""filterKey"":"""",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产退还-退还列表筛选,http,/ilogasset/rest/v1/asset/refund/app/page,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""personId"":"""",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""filterKey"":""${orderNumber}"",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产退还-退还单详情,http,/ilogasset/rest/v1/asset/refund/app/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产归还-新增归还,http,/ilogasset/rest/v1/asset/restitution/app,"{
+    ""person"": ""${username}"",
+    ""personId"": ""${userid}"",
+    ""department"": ""${department}"",
+    ""departmentId"": ""${departmentid}"",
+    ""manager"": ""${username}"",
+    ""managerId"": ""${userid}"",
+    ""assetItems"": [
+        {
+            ""nickName"":""${assetnickName}"",
+            ""code"": ""${assetcode}"",
+            ""borrowingExpirationDate"":""2024-12-05"",
+            ""assetId"": ""${assetid}"",
+            ""assetType"":""${assetType}"",
+            ""assetTypeName"":""${assetTypeName}"",
+            ""id"":""${assetid}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产归还-获取归还资产,http,/ilogasset/rest/v1/archival/app/page,"{""areaId"":"""",""typeId"":"""",""filterKey"":"""",""classification"":""RETURNABLE"",""scrapable"":false,""pageSize"":10,""pageNumber"":0,""dispositionType"":"""",""usageStatus"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产归还-归还列表,http,/ilogasset/rest/v1/asset/restitution/app/page,"{""pageNumber"":0,""pageSize"":10,""personId"":"""",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""filterKey"":"""",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产归还-归还列表筛选,http,/ilogasset/rest/v1/asset/restitution/app/page,"{""pageNumber"":0,""pageSize"":10,""status"":""COMPLETED"",""personId"":"""",""startDate"":"""",""endDate"":"""",""departmentId"":"""",""filterKey"":""${orderNumber}"",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产归还-归还单详情,http,/ilogasset/rest/v1/asset/restitution/app/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产调拨-新增调拨,http,/ilogasset/rest/v1/allocation/app,"{
+    ""department"": ""${department}"",
+    ""departmentId"": ""${departmentid}"",
+    ""beforeLocation"": {
+        ""mapPoi"": {
+
+        },
+        ""area"": {
+            ""id"": ""${areaid1}"",
+            ""nickName"": ""${areanickname1}""
+        },
+        ""indoorMapEnabled"": false
+    },
+    ""afterLocation"": {
+        ""mapPoi"": {
+
+        },
+        ""area"": {
+            ""id"": ""${areaid2}"",
+            ""nickName"": ""${areanickname2}""
+        },
+        ""indoorMapEnabled"": false
+    },
+    ""manager"": ""${username}"",
+    ""managerId"": ""${userid}"",
+    ""assetItems"": [
+        {
+            ""id"": ""${assetid}"",
+            ""nickName"": ""${assetnickName}"",
+            ""description"": null,
+            ""code"": ""${assetcode}"",
+            ""assetId"": ""${assetid}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产调拨-获取调拨资产,http,/ilogasset/rest/v1/archival/app/page,"{""areaId"":""${areaid1}"",""typeId"":"""",""filterKey"":"""",""classification"":""ALLOCATION"",""scrapable"":false,""pageSize"":10,""pageNumber"":0,""dispositionType"":"""",""usageStatus"":""IDLE""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产调拨-调拨列表,http,/ilogasset/rest/v1/allocation/app/page,"{""pageNumber"":0,""pageSize"":10,""startDate"":"""",""endDate"":"""",""departmentId"":"""",""filterKey"":"""",""beforeLocation"":"""",""afterLocation"":"""",""managerId"":"""",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产调拨-调拨列表筛选,http,/ilogasset/rest/v1/allocation/app/page,"{""pageNumber"":0,""pageSize"":10,""startDate"":"""",""endDate"":"""",""departmentId"":"""",""filterKey"":""${orderNumber}"",""beforeLocation"":"""",""afterLocation"":"""",""managerId"":"""",""sorts"":[{""property"":""createdDate""}]}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产调拨-调拨单详情,http,/ilogasset/rest/v1/allocation/app/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产交接-新增交接,http,/ilogasset/rest/v1/handover/app,"{
+  ""beforeHandover"": ""${username1}"",
+  ""beforeHandoverId"": ""${userid1}"",
+  ""afterHandover"": ""${username2}"",
+  ""afterHandoverId"": ""${userid2}"",
+  ""beforeDepartment"": ""${department1}"",
+  ""beforeDepartmentId"": ""${departmentid1}"",
+  ""afterDepartment"": ""${department2}"",
+  ""afterDepartmentId"": ""${departmentid2}"",
+  ""handoverTime"": """",
+  ""status"": """",
+  ""assetItems"": [
+    {
+      ""id"": ""${assetid}"",
+      ""nickName"": ""${assetnickName}"",
+      ""assetId"": ""${assetid}"",
+      ""assetType"": """",
+      ""code"": ""${assetcode}"",
+      ""inventoryTaskCode"": """",
+      ""inventoryResultType"": """"
+    }
+  ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产交接-获取交接资产,http,/ilogasset/rest/v1/archival/app/page,"{""areaId"":"""",""typeId"":"""",""filterKey"":"""",""classification"":""HANDOVER"",""scrapable"":false,""pageSize"":10,""pageNumber"":0,""dispositionType"":"""",""usageStatus"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产交接-交接人列表,http,/sysmgt/rest/v1/user/page,"{""filterName"":"""",""departmentId"":"""",""pageSize"":20,""pageNumber"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产交接-交接列表,http,/ilogasset/rest/v1/handover/app/page,"{""pageNumber"":0,""pageSize"":10,""filterKey"":"""",""personId"":"""",""departmentId"":"""",""beforeDepartmentId"":"""",""afterDepartmentId"":"""",""status"":""COMPLETED"",""timeSelect"":"""",""startDate"":"""",""endDate"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产交接-交接列表筛选,http,/ilogasset/rest/v1/handover/app/page,"{""pageNumber"":0,""pageSize"":10,""filterKey"":""${orderNumber}"",""personId"":"""",""departmentId"":"""",""beforeDepartmentId"":"""",""afterDepartmentId"":"""",""status"":""COMPLETED"",""timeSelect"":"""",""startDate"":"""",""endDate"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产交接-交接单详情,http,/ilogasset/rest/v1/handover/app/${id},,GET,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产处置-新增处置,http,/ilogasset/rest/v1/disposition/app,"{
+    ""person"": ""${username}"",
+    ""personId"": ""${userid}"",
+    ""department"": ""${department}"",
+    ""departmentId"": ""${departmentid}"",
+    ""dispositionType"": ""${distype}"",
+    ""assetItems"": [
+        {
+            ""nickName"":""${assetnickName}"",
+            ""code"": ""${assetcode}"",
+            ""id"": ""${assetid}"",
+            ""price"":""${price}"",
+            ""assetId"":""${assetid}"",
+             ""netValue"":""${netValue}""
+        }
+    ]
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产处置-获取处置资产,http,/ilogasset/rest/v1/archival/app/page,"{""areaId"":"""",""typeId"":"""",""filterKey"":"""",""classification"":""DISPOSITION"",""scrapable"":false,""pageSize"":10,""pageNumber"":0,""dispositionType"":""${distype}"",""usageStatus"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产处置-处置人列表,http,/sysmgt/rest/v1/user/page,"{""filterName"":"""",""departmentId"":"""",""pageSize"":20,""pageNumber"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产处置-处置列表,http,/ilogasset/rest/v1/disposition/app/page,"{""pageNumber"":0,""pageSize"":10,""filterKey"":"""",""personId"":"""",""dispositionType"":"""",""status"":""COMPLETED"",""timeSelect"":"""",""startDate"":"""",""endDate"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产处置-处置列表筛选,http,/ilogasset/rest/v1/disposition/app/page,"{""pageNumber"":0,""pageSize"":10,""filterKey"":""${orderNumber}"",""personId"":"""",""dispositionType"":"""",""status"":""COMPLETED"",""timeSelect"":"""",""startDate"":"""",""endDate"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+资产管理,移动端-资产处置-处置单详情,http,/ilogasset/rest/v1/disposition/app/${id},,GET,{'content-type': 'application/json'},,msg,等于,success

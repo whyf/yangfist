@@ -1,0 +1,2 @@
+模块名,接口描述,Scheme,接口地址,接口参数,请求方式,请求头,响应结果（非必填）,校验字段,校验方式,预期结果
+医疗设备,资产档案-列表查询,https,/ilogdevicemgmt/rest/v1/asset/archival/pc/page,"{""filterKey"":"""",""belongDepartId"":"""",""fixedAndOtherAssetTypeId"":"""",""status"":"""",""currentLocationId"":"""",""pageNumber"":0,""pageSize"":10,""sorts"":[{""property"":""createdDate"",""asc"":false,""nullHandling"":false}]}",POST,{'content-type': 'application/json'},,msg,等于,success

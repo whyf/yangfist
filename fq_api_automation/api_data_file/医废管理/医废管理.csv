@@ -1,0 +1,136 @@
+模块名,接口描述,Scheme,接口地址,接口参数,请求方式,请求头,响应结果（非必填）,校验字段,校验方式,预期结果
+用户管理,人员管理-列表查询,http,/sysmgt/rest/v1/user/page,"{""filterName"":"""",""departmentId"":"""",""pageSize"":20,""pageNumber"":0}",POST,{'content-type': 'application/json'},,msg,等于,success
+医废管理,医废装袋-补录成功,http,/ilogscrap/rest/v1/waste/bagged,"{
+    ""scrapType"": ""${scrap_type}"",
+    ""operator"": {
+        ""id"": ""${operator_id}"",
+        ""nickName"": ""${operator_name}""
+    },
+    ""operationTime"": ""${operation_time}"",
+    ""weight"": ""${weight}"",
+    ""handoverPerson"": {
+        ""id"": ""${handover_person_id}"",
+        ""nickName"": ""${handover_person_name}""
+    },
+    ""deviceCode"": ""${device_code}"",
+    ""remark"": ""接口测试数据"",
+    ""dept"": {
+        ""id"": ""${handover_person_dept_id}"",
+        ""nickName"": ""${handover_person_dept_name}""
+    },
+    ""files"": [
+
+    ]
+}",POST,{'content-type': 'application/json'},,code,等于,200
+医废管理,医废装袋-列表查询,http,/ilogscrap/rest/v1/waste/bagged/page,"{""filterKey"":"""",""pageNumber"":0,""pageSize"":20,""deptId"":"""",
+""quickDate"":["""",""""],""beginTime"":"""",""endTime"":""""}",POST,{'content-type': 'application/json'},,code,等于,200
+医废管理,医废装箱-补录成功,http,/ilogscrap/rest/v1/waste/packed,"{
+    ""operator"": {
+        ""id"": ""${operator_id}"",
+        ""nickName"": ""${operator_name}""
+    },
+    ""operationTime"": ""${operation_time}"",
+    ""wasteBaggedVOS"": [
+        {
+            ""id"": ""${bag_id}""
+        }
+    ],
+    ""weight"": ""${weight}"",
+    ""remark"": ""接口测试数据"",
+    ""scrapType"": ""${scrap_type}"",
+    ""files"": [],
+    ""errorStatus"": true
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+医废管理,医废装箱-列表查询,http,/ilogscrap/rest/v1/waste/packed/page,"{""filterKey"":"""",""pageNumber"":0,""pageSize"":20}",POST,{'content-type': 'application/json'},,msg,等于,success
+基础管理,供应商管理-列表查询,http,/ilogbasic/rest/v1/supplier/page,"{""filterKey"":"""",""departmentId"":"""",""pageSize"":20,""pageNumber"":0,""classCode"":""yfhs""}",POST,{'content-type': 'application/json'},,msg,等于,success
+医废管理,医废出库-补录成功,http,/ilogscrap/rest/v1/waste/outbound,"{
+    ""outboundPerson"": {
+        ""id"": ""${out_bound_person_id}"",
+        ""nickName"": ""${out_bound_person_name}""
+    },
+    ""outboundTime"": ""${outbound_time}"",
+    ""recipient"": {
+        ""id"": ""${recipient_id}"",
+        ""nickName"": ""${recipient_name}""
+    },
+    ""weight"": ""${weight}"",
+    ""wastePackedVOS"": [
+        {
+            ""id"": ""${packed_id}""
+        }
+    ],
+    ""scrapType"": ""${scrap_type}"",
+    ""files"": [],
+    ""errorStatus"": true
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+医废管理,医废出库-列表查询,http,/ilogscrap/rest/v1/waste/outbound/page,"{""pageNumber"":0,""pageSize"":20,""filterKey"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+医废管理,医废出库-出库单详情,http,/ilogscrap/rest/v1/waste/outbound/${outbound_id},,GET,{'content-type': 'application/json'},,msg,等于,success
+医废管理,医废溯源-医废袋/箱详情,http,/ilogscrap/rest/v1/waste/traceability/${code},,GET,{'content-type': 'application/json'},,msg,等于,success
+医废管理,医废库存-医废袋统计,http,/ilogscrap/rest/v1/waste/inventory/bags/count,,GET,{'content-type': 'application/json'},,msg,等于,success
+医废管理,医废库存-医废袋列表查询,http,/ilogscrap/rest/v1/waste/bagged/page,"{""pageNumber"":0,""pageSize"":20,""scrapStatus"":""WAITING_TO_PACK"",""filterKey"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+医废管理,医废库存-医废袋详情,http,/ilogscrap/rest/v1/waste/bagged/${bag_id},,GET,{'content-type': 'application/json'},,msg,等于,success
+医废管理,医废库存-医废箱统计,http,/ilogscrap/rest/v1/waste/inventory/bins/count,,GET,{'content-type': 'application/json'},,msg,等于,success
+医废管理,医废库存-医废箱列表查询,http,/ilogscrap/rest/v1/waste/packed/page,"{""pageNumber"":0,""pageSize"":20,""scrapStatus"":""PACKED"",""filterKey"":""""}",POST,{'content-type': 'application/json'},,msg,等于,success
+医废管理,医废库存-医废箱详情,http,/ilogscrap/rest/v1/waste/packed/${packed_id},,GET,{'content-type': 'application/json'},,msg,等于,success
+医废管理,PAD-新增医废袋,http,/ilogscrap/rest/v1/waste/bagged,"{
+    ""mustSignature"": true,
+    ""isTemporary"": true,
+    ""deviceCode"": ""${device_code}"",
+    ""scrapType"": ""${scrap_type}"",
+    ""weight"": ""${weight}"",
+    ""operator"": {
+        ""id"": ""${operator_id}"",
+        ""nickName"": ""${operator_name}""
+    }
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+医废管理,PAD-医废袋交接签名,http,/ilogscrap/rest/v1/waste/bagged/signature,"{
+    ""id"": ""${bag_id}"",
+    ""handoverPerson"": {
+          ""id"": ""${handover_person_id}"",
+          ""nickName"": ""${handover_person_name}""
+     },
+     ""dept"": {
+          ""id"": ""${handover_person_dept_id}"",
+          ""nickName"": ""${handover_person_dept_name}""
+     }
+}",PUT,{'content-type': 'application/json'},,msg,等于,success
+医废管理,PAD-新增医废箱,http,/ilogscrap/rest/v1/waste/packed,"{
+    ""operator"": {
+        ""id"": ""${operator_id}"",
+        ""nickName"": ""${operator_name}""
+    },
+    ""wasteBaggedVOS"": [
+        {
+            ""id"": ""${bag_id}""
+        }
+    ],
+    ""weight"": ""${weight}"",
+    ""scrapType"": ""${scrap_type}"",
+    ""errorStatus"": true
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+医废管理,PAD-医废出库,http,/ilogscrap/rest/v1/waste/outbound,"{
+    ""outboundPerson"": {
+        ""id"": ""${out_bound_person_id}"",
+        ""nickName"": ""${out_bound_person_name}""
+    },
+    ""recipient"": {
+        ""id"": ""${recipient_id}"",
+        ""nickName"": ""${recipient_name}""
+    },
+    ""weight"": ""${weight}"",
+    ""wastePackedVOS"": [
+        {
+            ""id"": ""${packed_id}""
+        }
+    ],
+    ""errorStatus"": true,
+    ""mustSignature"": true,
+}",POST,{'content-type': 'application/json'},,msg,等于,success
+医废管理,PAD-医废出库交接签名,http,/ilogscrap/rest/v1/waste/outbound/signature,"{
+    ""id"": ""${outbound_id}""
+}",PUT,{'content-type': 'application/json'},,msg,等于,success
+医废管理,PAD-本车库存数据统计,http,/ilogscrap/rest/v1/waste/inventory/car/bags/count?deviceCode=861503062719266,,GET,{'content-type': 'application/json'},,msg,等于,success
+医废管理,PAD-本车库存列表查询,http,/ilogscrap/rest/v1/waste/bagged/all,"{""pageNumber"":0,""pageSize"":10,""scrapStatus"":""WAITING_TO_PACK"",""deviceCode"":""861503062719266"",""isTemporary"":true}",POST,{'content-type': 'application/json'},,msg,等于,success
+医废管理,PAD-医废概况,http,/ilogscrap/rest/v1/waste/statistic/summarize,"{""deptId"":"""",""beginTime"":""2024-09-01 00:00:00"",""endTime"":""2024-09-25 23:59:59""}",POST,{'content-type': 'application/json'},,msg,等于,success
+医废管理,PAD-医废占比,http,/ilogscrap/rest/v1/waste/statistic/ratio,"{""deptId"":"""",""beginTime"":""2024-09-01 00:00:00"",""endTime"":""2024-09-25 23:59:59""}",POST,{'content-type': 'application/json'},,msg,等于,success
+医废管理,PAD-医废统计,http,/ilogscrap/rest/v1/waste/statistic,"{""deptId"":"""",""beginTime"":""2024-09-01 00:00:00"",""endTime"":""2024-09-25 23:59:59""}",POST,{'content-type': 'application/json'},,msg,等于,success
